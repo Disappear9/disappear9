@@ -6,25 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://thinkalone.win">
-  <title>博客程序更换至HEXO | ThinkAlone</title>
+  <title>使用 GitHub Actions 自动部署Hexo | ThinkAlone</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="美国 罗利 美国 罗利 Openshift倒闭了我在8月份的时候收到了来自Openshift的这样一封邮件：   123456Valued OpenShift Online user,Today, we announce the sunset of the previous generation OpenShift Online 2 platform. After September 30th,">
+  <meta name="description" content="2019年时给博客配置了Travis CI 自动构建，然后前几天准备发个文章，写完反手一个git push博客就崩了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客程序更换至HEXO">
-<meta property="og:url" content="https://thinkalone.win/Move-to-HEXO.html">
+<meta property="og:title" content="使用 GitHub Actions 自动部署Hexo">
+<meta property="og:url" content="https://thinkalone.win/hexo-on-action.html">
 <meta property="og:site_name" content="ThinkAlone">
-<meta property="og:description" content="美国 罗利 美国 罗利 Openshift倒闭了我在8月份的时候收到了来自Openshift的这样一封邮件：   123456Valued OpenShift Online user,Today, we announce the sunset of the previous generation OpenShift Online 2 platform. After September 30th,">
+<meta property="og:description" content="2019年时给博客配置了Travis CI 自动构建，然后前几天准备发个文章，写完反手一个git push博客就崩了。">
 <meta property="og:locale">
-<meta property="og:image" content="https://thinkalone.win/pictures/Move-to-HEXO/1.png">
-<meta property="og:image" content="https://thinkalone.win/pictures/Move-to-HEXO/2.png">
-<meta property="article:published_time" content="2017-12-21T13:11:12.000Z">
+<meta property="og:image" content="https://thinkalone.win/pictures/hexo-on-action/head.png">
+<meta property="og:image" content="https://thinkalone.win/pictures/hexo-on-action/new.png">
+<meta property="og:image" content="https://thinkalone.win/pictures/hexo-on-action/new-ok.png">
+<meta property="og:image" content="https://thinkalone.win/pictures/hexo-on-action/new-key.png">
+<meta property="og:image" content="https://thinkalone.win/pictures/hexo-on-action/config.png">
+<meta property="og:image" content="https://github.com/Disappear9/disappear9.github.io/workflows/Hexo%20Deploy/badge.svg">
+<meta property="article:published_time" content="2020-12-26T13:00:00.000Z">
 <meta property="article:modified_time" content="2021-01-23T07:54:07.350Z">
 <meta property="article:author" content="Disappear9">
+<meta property="article:tag" content="教程">
 <meta property="article:tag" content="折腾那些事">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://thinkalone.win/pictures/Move-to-HEXO/1.png">
+<meta name="twitter:image" content="https://thinkalone.win/pictures/hexo-on-action/head.png">
   
     <link rel="alternative" href="/atom.xml" title="ThinkAlone" type="application/atom+xml">
   
@@ -211,22 +216,22 @@ ga('send', 'pageview');
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Move-to-HEXO" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-hexo-on-action" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      博客程序更换至HEXO
+      使用 GitHub Actions 自动部署Hexo
     </h1>
   
 
 
   
   
-<a href="/Move-to-HEXO.html" class="archive-article-date">
-        <time datetime="2017-12-21T13:11:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-21</time>
+<a href="/hexo-on-action.html" class="archive-article-date">
+        <time datetime="2020-12-26T13:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-26</time>
 </a>
 
   
@@ -239,7 +244,7 @@ ga('send', 'pageview');
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.4k字</span>
+      <span class="post-count">686字</span>
     </span>
   </span>
 
@@ -248,7 +253,7 @@ ga('send', 'pageview');
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">6分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -259,83 +264,40 @@ ga('send', 'pageview');
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="美国-罗利-美国-罗利-Openshift倒闭了"><a href="#美国-罗利-美国-罗利-Openshift倒闭了" class="headerlink" title="美国 罗利 美国 罗利 Openshift倒闭了"></a><del>美国 罗利 美国 罗利 Openshift倒闭了</del></h2><p>我在8月份的时候收到了来自Openshift的这样一封邮件：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Valued OpenShift Online user,</span><br><span class="line">Today, we announce the sunset of the previous generation OpenShift Online 2 platform. After September 30th, 2017, Red Hat OpenShift Online 2 (our Free, Bronze, and Silver offerings in v2) will no longer be available. </span><br><span class="line">............</span><br><span class="line">If you’re still using the previous generation OpenShift Online 2 platform, you can find step-by-step instructions in our Migration Center to help you easily migrate your applications.</span><br><span class="line">Migrate by September 30th, 2017</span><br><span class="line">............</span><br></pre></td></tr></table></figure>
-<p>大意就是老的空间准备关了，请换到新的。<br>而时并没有在意，因为我知道从截至日期到完全关停还是有很长时间可以苟的，然而，我错了……<br>到截至日期一个星期后，我的Blog炸了……<br>而且一炸就是一个多月……..<br>不过还好，我有备份，但是找个新的空间就成了问题。<br>查了半天，国内的空间要各种认证，国外的即使加上CDN访问速度也很慢。<br>然后，我偶然间得知Github提供了一个叫Git pages的服务，可以拿来托管一些静态页面<br>好了我的Blog有救了！</p>
+    <p><img src="/pictures/hexo-on-action/head.png" alt="head"></p>
+<p>2019年时给博客配置了Travis CI 自动构建，然后前几天准备发个文章，写完反手一个<code>git push</code>博客就崩了。</p>
 <a id="more"></a>
-<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p><strong>安装Node</strong><br>作用：用来生成静态页面的 到Node.js官网（<a target="_blank" rel="noopener" href="https://nodejs.org/">https://nodejs.org/</a> ）下载相应平台的最新版本，安装即可。<br><strong>安装Git&amp;申请Github帐号</strong><br>直接apt install就行</p>
-<h2 id="安装-amp-配置HEXO"><a href="#安装-amp-配置HEXO" class="headerlink" title="安装&amp;配置HEXO"></a>安装&amp;配置HEXO</h2><pre><code>sudo npm install -g hexo
-mkdir blog
-cd blog
-hexo init</code></pre>
-<p>这会在当前目录建立HEXO的主目录blog<br>安装一些组件，然后测试能不能正常运行：</p>
-<pre><code>sudo npm install hexo-server
-npm install hexo-server --save
-npm install hexo-renderer-ejs --save
-npm install hexo-renderer-stylus --save
-npm install hexo-renderer-marked --save
-npm install hexo-deployer-git --save
-hexo g
-hexo s</code></pre>
-<p>这时打开浏览器访问<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 应该能看到示例页面</p>
-<h2 id="配置Github"><a href="#配置Github" class="headerlink" title="配置Github"></a>配置Github</h2><p><strong>建立Repository</strong><br>建立与你用户名对应的仓库，仓库名必须为 (你的用户名.github.io)<br>导入好SSH密钥<br>然后暂时不需要管他了</p>
-<h2 id="配置Blog"><a href="#配置Blog" class="headerlink" title="配置Blog"></a>配置Blog</h2><p>编辑 <strong>_config.yml</strong></p>
-<pre><code>nano _config.yml</code></pre>
-<p>具体内容请看官方文档（修改网站标题，语言，时区之类的）： <a target="_blank" rel="noopener" href="https://hexo.io/docs/configuration.html">https://hexo.io/docs/configuration.html</a><br>主要还需要更改这些：</p>
-<pre><code>deploy:
-  type: git
-  repository: https://github.com/用户名/用户名.github.io.git
-  branch: master</code></pre>
-<p>配置好Git以后，直接运行：</p>
-<pre><code>hexo d</code></pre>
-<p>这样就完成了初步部署，浏览器中打开https://用户名.github.io 就可以看到初步成型的博客了。</p>
-<h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><p>在blog目录下的source文件夹中新建一个名为CNAME的文件，文件里写上你的域名<strong>（不带http:// ）</strong><br>然后在你的域名控制面板里建立一个到 用户名.github.io 的CNAME记录</p>
-<p><strong>如果你对目前的博客感到满意，那么看到这里就可以关掉这个页面了，然后去看看官方文档就可以开始正常写作了</strong></p>
-<h2 id="换个主题"><a href="#换个主题" class="headerlink" title="换个主题"></a>换个主题</h2><p>我使用的主题是yilia<br><a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia">https://github.com/litten/hexo-theme-yilia</a></p>
-<p>在Blog/theme下运行git clone <a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia.git">https://github.com/litten/hexo-theme-yilia.git</a><br>然后把hexo-theme-yilia更名为yilia<br>编辑blog目录下的 <strong>_config.yml</strong></p>
-<pre><code>theme: yilia</code></pre>
-<p>然后似乎也没什么需要我写的了，主题作者的说明写的很详细</p>
-<h2 id="加个Live2d"><a href="#加个Live2d" class="headerlink" title="加个Live2d"></a>加个Live2d</h2><p>就是现在你屏幕右下角的这个，眼睛还会随着你的鼠标运动。<br><a target="_blank" rel="noopener" href="https://github.com/EYHN/hexo-helper-live2d/blob/master/README.zh-CN.md">https://github.com/EYHN/hexo-helper-live2d/blob/master/README.zh-CN.md</a><br>老版本还需要改layout.ejs来着，现在不需要了，原作者的文档写的很清楚。<br>喜欢哪个模型就直接 <strong>npm install 模型的包名</strong>，然后把_config.yml 中use:字段改一下</p>
-<p>我的配置：</p>
-<pre><code>live2d:
-  enable: true
-  scriptFrom: local
-  model:
-    use: live2d-widget-model-koharu
-  display:
-    position: right
-    width: 75
-    height: 150
-    hOffset: 50
-    vOffset: -15
-  mobile:
-    show: true
-    scale: 0.5
-  react:
-    opacityDefault: 0.7
-    opacityOnHover: 0.2</code></pre>
-<h2 id="配置评论"><a href="#配置评论" class="headerlink" title="配置评论"></a>配置评论</h2><p>多说，畅言，网易之类的不是被墙就是要求备案，所以我用了Gitment<br>yilia主题自带Gitment，直接修改主题文件夹的_config.yml就好</p>
-<pre><code>gitment_owner: disappear9
-gitment_repo: &#39;disappear9.github.io&#39;
-gitment_oauth:
-  client_id: &#39;id&#39;
-  client_secret: &#39;secret key&#39;</code></pre>
-<p>然后在<a target="_blank" rel="noopener" href="https://github.com/settings/developers">https://github.com/settings/developers</a> 中新建一个OAuth App</p>
-<p><img src="/pictures/Move-to-HEXO/1.png"><br><strong>Authorization callback URL要填你的最终的博客地址</strong><br>然后访问任意一篇文章，登录创建Github仓库的账号<br>授权完成后会看到一个初始化的按钮，按下它，就会在 用户名.github.io 仓库创建一个用于存储评论的issues（<strong>这一步不要在本地调试的时候做，不然100%报错</strong>）<br><img src="/pictures/Move-to-HEXO/2.png"></p>
-<p><strong>然后紧跟着还有一个坑</strong></p>
-<p>因为Github对label的字数限制，所以会出现 <strong>Error：validation failed</strong><br>你需要更改blog目录下的_config.yml：</p>
-<pre><code>#URL
-##If your site is put in a subdirectory, set url as &#39;http://yoursite.com/child&#39; and root as &#39;/child/&#39;
-url: https://thinkalone.ga/ #&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;这里，改成你的域名
-root: /
-permalink: :title.html
-......
-# Writing
-new_post_name: :title.md #&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;这里，只保留标题
-default_layout: post</code></pre>
-<p>或更改主题 <strong>/layout/_partial/post</strong> 目录下的 <strong>gitment.ejs</strong> 文件 如果你使用的也是yilia主题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;gitment-ctn&quot;&gt;&lt;&#x2F;div&gt; </span><br><span class="line">&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#x2F;&#x2F;imsun.github.io&#x2F;gitment&#x2F;style&#x2F;default.css&quot;&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;&#x2F;imsun.github.io&#x2F;gitment&#x2F;dist&#x2F;gitment.browser.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var gitment &#x3D; new Gitment(&#123;</span><br><span class="line">  id: &quot;&lt;%&#x3D; page.title %&gt;&quot;,</span><br><span class="line">  owner: &#39;&lt;%&#x3D;theme.gitment_owner%&gt;&#39;,</span><br><span class="line">  repo: &#39;&lt;%&#x3D;theme.gitment_repo%&gt;&#39;,</span><br><span class="line">  oauth: &#123;</span><br><span class="line">    client_id: &#39;&lt;%&#x3D;theme.gitment_oauth.client_id%&gt;&#39;,</span><br><span class="line">    client_secret: &#39;&lt;%&#x3D;theme.gitment_oauth.client_secret%&gt;&#39;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">gitment.render(&#39;gitment-ctn&#39;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</a><br><a target="_blank" rel="noopener" href="http://xichen.pub/2018/01/31/2018-01-31-gitment/">http://xichen.pub/2018/01/31/2018-01-31-gitment/</a></p>
+
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p>首先你的Hexo必须是已经在本地环境下配置好的，能正常运行<code>hexo g</code>。</p>
+<h2 id="生成-amp-配置秘钥"><a href="#生成-amp-配置秘钥" class="headerlink" title="生成&amp;配置秘钥"></a>生成&amp;配置秘钥</h2><p>使用<code>ssh-keygen</code>生成一对秘钥</p>
+<pre><code>ssh-keygen -t ed25519 -C &quot;Hexo Deploy Key&quot; -f github-deploy-key</code></pre>
+<p>直接回车，不要设置密码</p>
+<p>在 GitHub 上打开<code>仓库-&gt; Settings -&gt; Secrets</code>添加一个Secrets，<code>Name</code>填<code>HEXO_DEPLOY_KEY</code>，<code>Value</code>把上面生成的<strong>私钥</strong>粘贴进去</p>
+<p><img src="/pictures/hexo-on-action/new.png" alt="new"></p>
+<p><img src="/pictures/hexo-on-action/new-ok.png" alt="new-ok"></p>
+<p>打开<code>仓库-&gt; Settings -&gt; Deploy keys</code>添加一个Key，<code>Title</code>填<code>HEXO_DEPLOY_PUB</code>，<code>Key</code>把上面生成的<strong>公钥</strong>粘贴进去，勾选下面的<code>Allow write access</code></p>
+<p><img src="/pictures/hexo-on-action/new-key.png" alt="new-key"></p>
+<h2 id="准备文件"><a href="#准备文件" class="headerlink" title="准备文件"></a>准备文件</h2><p>创建一个空的分支，从原有的hexo源文件目录下拷贝这些文件&amp;文件夹：</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> scaffolds</li>
+<li><input checked="" disabled="" type="checkbox"> source</li>
+<li><input checked="" disabled="" type="checkbox"> themes</li>
+<li><input checked="" disabled="" type="checkbox"> _config.yml（hexo的）</li>
+<li><input checked="" disabled="" type="checkbox"> package.json</li>
+</ul>
+<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>为了防止以后由于长时间未维护，主题或hexo更新导致的博客炸掉，所以配置主题为submodule。</p>
+<pre><code>git submodule add https://github.com/JoeyBling/hexo-theme-yilia-plus themes/yilia</code></pre>
+<p>在_config.yml的最后添加一项<code>theme_config:</code></p>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.xxwhite.com/2020/blog-ci.html#%E4%B8%BB%E9%A2%98%E5%AD%90%E6%A8%A1%E5%9D%97%E5%8C%96">https://blog.xxwhite.com/2020/blog-ci.html#%E4%B8%BB%E9%A2%98%E5%AD%90%E6%A8%A1%E5%9D%97%E5%8C%96</a></p>
+<p><img src="/pictures/hexo-on-action/config.png" alt="config"></p>
+<h2 id="配置Workflow"><a href="#配置Workflow" class="headerlink" title="配置Workflow"></a>配置Workflow</h2><p>创建一个新文件：<code>.github/workflows/deploy.yml</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">name: Hexo Deploy</span><br><span class="line"></span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">    branches:</span><br><span class="line">      - source                          #被监控的分支，当这个分支有改动时触发</span><br><span class="line"></span><br><span class="line">jobs:</span><br><span class="line">  build:</span><br><span class="line">    runs-on: ubuntu-18.04</span><br><span class="line">    if: github.event.repository.owner.id &#x3D;&#x3D; github.event.sender.id</span><br><span class="line"></span><br><span class="line">    steps:</span><br><span class="line">      - name: Checkout source</span><br><span class="line">        uses: actions&#x2F;checkout@v2</span><br><span class="line">        with:</span><br><span class="line">          ref: source                   #hexo源文件所在的分支</span><br><span class="line"></span><br><span class="line">      - name: Setup Node.js</span><br><span class="line">        uses: actions&#x2F;setup-node@v1</span><br><span class="line">        with:</span><br><span class="line">          node-version: &#39;12&#39;</span><br><span class="line"></span><br><span class="line">      - name: Setup Hexo</span><br><span class="line">        env:</span><br><span class="line">          ACTION_DEPLOY_KEY: $&#123;&#123; secrets.HEXO_DEPLOY_KEY &#125;&#125;</span><br><span class="line">        run: |</span><br><span class="line">          mkdir -p ~&#x2F;.ssh&#x2F;</span><br><span class="line">          echo &quot;$ACTION_DEPLOY_KEY&quot; &gt; ~&#x2F;.ssh&#x2F;id_ed25519</span><br><span class="line">          chmod 700 ~&#x2F;.ssh</span><br><span class="line">          chmod 600 ~&#x2F;.ssh&#x2F;id_ed25519</span><br><span class="line">          ssh-keyscan github.com &gt;&gt; ~&#x2F;.ssh&#x2F;known_hosts</span><br><span class="line">          git config --global user.email &quot;disappear9@outlook.com&quot;   #设置git提交时的Email</span><br><span class="line">          git config --global user.name &quot;Disappear9&quot;                #设置git提交时的用户名</span><br><span class="line">          npm install hexo-cli -g</span><br><span class="line">          npm install</span><br><span class="line">          git submodule update --init --recursive                   #拉取submodule</span><br><span class="line">          rm themes&#x2F;yilia&#x2F;_config.yml                               #删除主题自带的配置文件</span><br><span class="line">          chmod +x deploy.sh</span><br><span class="line"></span><br><span class="line">      - name: Deploy</span><br><span class="line">        run: |</span><br><span class="line">          hexo g</span><br><span class="line">          .&#x2F;deploy.sh</span><br></pre></td></tr></table></figure>
+<p>由于使用<code>hexo d</code>部署会让git的commit看起来很丑，所以把部署写进脚本<code>deploy.sh</code>（放在新建分支的根目录下）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">set -ev</span><br><span class="line">export TZ&#x3D;&#39;Asia&#x2F;Shanghai&#39;</span><br><span class="line"></span><br><span class="line">git clone --depth&#x3D;1 -b master git@github.com:&#123;用户名&#125;&#x2F;&#123;仓库&#125;.git .deploy_git    #自己替换</span><br><span class="line"></span><br><span class="line">cd .deploy_git</span><br><span class="line">git checkout master</span><br><span class="line">mv .git&#x2F; ..&#x2F;public&#x2F;</span><br><span class="line">cd ..&#x2F;public</span><br><span class="line"></span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;Site updated: &#96;date +&quot;%Y-%m-%d %H:%M:%S&quot;&#96;&quot;</span><br><span class="line">git push origin master:master --force </span><br></pre></td></tr></table></figure>
+<h2 id="加个Badge"><a href="#加个Badge" class="headerlink" title="加个Badge"></a>加个Badge</h2><p><a target="_blank" rel="noopener" href="https://github.com/Disappear9/disappear9.github.io/tree/source"><img src="https://github.com/Disappear9/disappear9.github.io/workflows/Hexo%20Deploy/badge.svg" alt="Build Status"></a></p>
+<p>参考：<a target="_blank" rel="noopener" href="https://docs.github.com/cn/actions/managing-workflow-runs/adding-a-workflow-status-badge">https://docs.github.com/cn/actions/managing-workflow-runs/adding-a-workflow-status-badge</a></p>
+<pre><code>https://github.com/&lt;OWNER&gt;/&lt;REPOSITORY&gt;/workflows/Hexo%20Deploy/badge.svg</code></pre>
+<h2 id="完"><a href="#完" class="headerlink" title="完"></a>完</h2><p><a target="_blank" rel="noopener" href="https://github.com/Disappear9/disappear9.github.io/tree/source">https://github.com/Disappear9/disappear9.github.io/tree/source</a><br>欢迎参考</p>
 
     
 
@@ -350,7 +312,7 @@ default_layout: post</code></pre>
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://thinkalone.win/Move-to-HEXO.html" title="博客程序更换至HEXO" target="_blank">https://thinkalone.win/Move-to-HEXO.html</a>
+          <a href="https://thinkalone.win/hexo-on-action.html" title="使用 GitHub Actions 自动部署Hexo" target="_blank">https://thinkalone.win/hexo-on-action.html</a>
         </li>
         
         <li>
@@ -372,6 +334,10 @@ default_layout: post</code></pre>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">折腾那些事</a>
         		</li>
       		
@@ -384,7 +350,7 @@ default_layout: post</code></pre>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/折腾那些事//" class="article-tag-list-link color1">折腾那些事</a>
+        			<a href="/categories/教程//" class="article-tag-list-link color3">教程</a>
         		</li>
       		
 		</ul>
@@ -439,7 +405,7 @@ default_layout: post</code></pre>
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://thinkalone.win/Move-to-HEXO.html" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://thinkalone.win/hexo-on-action.html" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -454,18 +420,18 @@ default_layout: post</code></pre>
 
 <nav id="article-nav">
   
-    <a href="/Clipboard.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/skip-steam-update.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          强奸你的剪切板
+          如何优雅的跳过/禁止Steam更新你的游戏
         
       </div>
     </a>
   
   
-    <a href="/Flash-9211-8i.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">LSi 9211-8i刷IT模式/升级</div>
+    <a href="/Travis-CI-Hexo.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用 Travis CI 自动构建 Hexo 博客</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -492,7 +458,7 @@ default_layout: post</code></pre>
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BE%8E%E5%9B%BD-%E7%BD%97%E5%88%A9-%E7%BE%8E%E5%9B%BD-%E7%BD%97%E5%88%A9-Openshift%E5%80%92%E9%97%AD%E4%BA%86"><span class="toc-number">1.</span> <span class="toc-text">美国 罗利 美国 罗利 Openshift倒闭了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">配置环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-amp-%E9%85%8D%E7%BD%AEHEXO"><span class="toc-number">3.</span> <span class="toc-text">安装&amp;配置HEXO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEGithub"><span class="toc-number">4.</span> <span class="toc-text">配置Github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEBlog"><span class="toc-number">5.</span> <span class="toc-text">配置Blog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D"><span class="toc-number">6.</span> <span class="toc-text">绑定域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%A2%E4%B8%AA%E4%B8%BB%E9%A2%98"><span class="toc-number">7.</span> <span class="toc-text">换个主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E4%B8%AALive2d"><span class="toc-number">8.</span> <span class="toc-text">加个Live2d</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%AF%84%E8%AE%BA"><span class="toc-number">9.</span> <span class="toc-text">配置评论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">10.</span> <span class="toc-text">参考</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo"><span class="toc-number">1.</span> <span class="toc-text">Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90-amp-%E9%85%8D%E7%BD%AE%E7%A7%98%E9%92%A5"><span class="toc-number">2.</span> <span class="toc-text">生成&amp;配置秘钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E6%96%87%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">准备文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEWorkflow"><span class="toc-number">5.</span> <span class="toc-text">配置Workflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E4%B8%AABadge"><span class="toc-number">6.</span> <span class="toc-text">加个Badge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C"><span class="toc-number">7.</span> <span class="toc-text">完</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -519,9 +485,9 @@ default_layout: post</code></pre>
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "博客程序更换至HEXO" -->
+    <!-- id: "使用 GitHub Actions 自动部署Hexo" -->
     var gitment = new Gitment({
-      id: "20171221211112",
+      id: "20201226210000",
       owner: 'disappear9',
       repo: 'disappear9.github.io',
       oauth: {
